@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>shpp-library</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="library Sh++">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+    integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous' />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+  <link rel='stylesheet' href='http://localhost:3000/libs.min.css' />
+  <link rel='stylesheet' href='http://localhost:3000/style.css' />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'
+    crossorigin='anonymous' />
+  <link rel='shortcut icon' href='http://localhost:3000/book/favicon.ico' />
+</head>
+
+<body data-gr-c-s-loaded="true" class="">
+  <section id='header' class='header-wrapper'>
+    <nav class='navbar navbar-default'>
+      <div class='container'>
+        <div class='col-xs-5 col-sm-2 col-md-2 col-lg-2'>
+          <div class='logo'><a href='http://localhost:3000/admin' class='navbar-brand'><span class='sh'>Ш</span><span
+                class='plus'>++</span></a></div>
+        </div>
+        <div class='col-xs-12 col-sm-7 col-md-8 col-lg-8'>
+          <div class='main-menu'>
+            <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+              <form class='navbar-form navbar-right'>
+                <div class='form-group'>
+                  <input id='search' type='text' placeholder='Найти книгу' class='form-control' />
+                  <script>
+                    $("#search").bind("keypress", function (e) {
+                      if (e.keyCode ==
+                        13) {
+                        e.preventDefault();
+                        window.location.replace('http://localhost:3000/?search=' + $(this).val())
+                      }
+                    })
+                  </script>
+
+                  <div class='loader'><img src='/loading.gif' /></div>
+                  <div id='list' size='' class='bAutoComplete mSearchAutoComplete'></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class='col-xs-2 col-sm-3 col-md-2 col-lg-2'>
+          <div class='social  hidden-xs'><a href='https://www.facebook.com/shpp.kr/' target='_blank'><span
+                class='fa-stack fa-sm'><i class='fa fa-facebook fa-stack-1x'></i></span></a><a
+              href='http://programming.kr.ua/ru/courses#faq' target='_blank'><span class='fa-stack fa-sm'><i
+                  class='fa fa-book fa-stack-1x'></i></span></a>
+            <a href="/admin"><span class='fa-stack fa-sm'><i class="fa fa-sign-in fa-stack-1x"
+                  aria-hidden="true"></i></span></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </section>
+  <section id="main" class="main-wrapper">
+    <div class="container">
+      <div id="content" class="book_block col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <form action="/admin/add" method="post" enctype="multipart/form-data">
+          <div id="id" book-id="22">
+            <div id="bookImg" class="col-xs-12 col-sm-3 col-md-3 item" style="margin:;">
+              <div class="form-group" id="form-group">
+                <label class="label" for="file" id="label">
+                  <i class="material-symbols-outlined">
+                    image
+                  </i>
+                  <span class="title">Прикрепить <br> изображение</span>
+                </label>
+                <input type="file" name="img" id="file" accept=".jpg" required>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 info">
+              ` <div class="bookInfo col-md-12">
+                <div id="title" class="titleBook">
+                  <input type="text" name="title" id="text" class="form-control" required placeholder="Название книги">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="bookLastInfo">
+                  <div class="bookRow"><span class="properties">автор:</span><input type="text" name="author"
+                      class="form-control" required placeholder="Автор">
+                  </div>
+                  <div class="bookRow"><span class="properties">год:</span><input type="text" name="year"
+                      class="form-control search" required placeholder="Год">
+                  </div>
+                  <div class="bookRow"><span class="properties">страниц:</span><input type="text" name="pages"
+                      class="form-control" required placeholder="Количество страниц">
+                  </div>
+                </div>
+              </div>
+              <div class="bookDescription col-xs-12 col-sm-12 col-md-12 hidden-xs hidden-sm">
+                <h4>О книге</h4>
+                <hr>
+                <p id="description"><textarea placeholder="Описание книги" class="form-control" rows="4"
+                    maxlength="5000" name="about" style="resize: none;"></textarea></p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <input type="submit" class=" btn-lg btn btn-success col-xs-2" value="Сохранить">
+          </div>
+        </form>
+
+        </script>
+        <script> const tx = document.getElementsByTagName("textarea");
+          for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+          }
+
+          function OnInput() {
+            this.style.height = "auto";
+            this.style.height = (this.scrollHeight) + "px";
+          }
+          const formGroup = document.getElementById('form-group');
+
+          formGroup.ondragover = () => {
+            event.preventDefault();
+            document.getElementById('label').style.border = '2px solid #0d6efd';
+          };
+
+          formGroup.ondragleave = () => {
+            event.preventDefault();
+            document.getElementById('label').style.border = '2px dashed #0d6efd';
+          };
+
+          formGroup.ondrop = (event) => {
+            event.preventDefault();
+
+            const title = document.querySelector('.title');
+            const { files } = event.dataTransfer;
+
+            if (files.length === 1) {
+              title.innerText = files[0].name;
+            } else {
+              title.innerText = `Download ${files.length} files`;
+            }
+            title.style.color = '#0d6efd';
+            document.querySelector('.label i').style.color = '#0d6efd';
+          };
+        </script>
+      </div>
+    </div>
+  </section>
+  <section id="footer" class="footer-wrapper">
+    <div class="navbar-bottom row-fluid">
+      <div class="navbar-inner">
+        <div class="container-fuild">
+          <div class="content_footer"> Made with<a href="http://programming.kr.ua/" class="heart"><i aria-hidden="true"
+                class="fa fa-heart"></i></a>by HolaTeam</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

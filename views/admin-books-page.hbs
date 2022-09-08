@@ -1,0 +1,38 @@
+<section id="main" class="main-wrapper">
+  <div class="container">
+    <div id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      {{#each books}}
+      <div data-book-id="{{id}}" class="book_item col-xs-6 col-sm-3 col-md-2 col-lg-2">
+        <div class="book">
+          <a href="/books/{{id}}"><img src="img/books/{{id}}.jpg" alt={{{title}}}>
+            <div data-title={{{title}}} class="blockI" style="height: 46px;">
+              <div data-book-title={{{title}}} class="title size_text">{{{title}}}</div>
+              <div data-book-author={{{author}}} class="author">{{{author}}}</div>
+            </div>
+          </a>
+          <div>
+            <a href="/books/{{id}}">
+              <button type="button" class="btn btn-success">Читать</button>
+            </a>
+            <a href="/admin/delete/{{id}}">Удалить</a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <div class="book_item col-xs-6 col-sm-3 col-md-2 col-lg-2">
+        <div class="book">
+          <a href="/addBook.html"><span class="material-symbols-outlined">
+              import_contacts
+            </span>
+          </a>
+          <div>
+            <a href="/addBook.html">
+              <button type="button" class="btn btn-success">Добавить <br> книгу</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center;">{{>pag}}</div>
+</section>
